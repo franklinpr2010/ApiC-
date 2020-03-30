@@ -11,7 +11,7 @@ Vai abrir a tela numa janela flutuante.
 
 ALT + F12, isso para qualquer classe.
 
-CRTL + . cria um construtor dentro da classe
+CRTL + . cria um construtor dentro da classe ( Seloecionar os atributos que irão para o construtor )
 
 Instalar plugin pmrToolkit
 
