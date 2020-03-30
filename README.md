@@ -7,6 +7,10 @@ Cria a classe jogador e depois digite as variáveis.
 
 Para criar uma propriedade digite prop e depois tab 2 vezes.
 
+Vai abrir a tela numa janela flutuante.
+
+ALT + F12, isso para qualquer classe.
+
 
 
 
