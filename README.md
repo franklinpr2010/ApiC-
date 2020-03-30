@@ -13,6 +13,10 @@ ALT + F12, isso para qualquer classe.
 
 CRTL + . cria um construtor dentro da classe
 
+Instalar plugin pmrToolkit
+
+
+
 
 
 
