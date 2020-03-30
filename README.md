@@ -15,6 +15,8 @@ CRTL + . cria um construtor dentro da classe ( Seloecionar os atributos que irã
 
 Instalar plugin pmrToolkit
 
+'CRTL + ,' em cima de uma classe ele vai listar tudo que contêm esse nome no visual studio.
+
 
 
 
