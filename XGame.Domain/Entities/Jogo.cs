@@ -4,6 +4,10 @@ using System;
 using XGame.Domain.Entities.Base;
 using XGame.Domain.Resources;
 
+/**
+ * 
+ * Criar Projeto Através do Class Library inicialmente.
+**/
 namespace XGame.Domain.Entities
 {
     public class Jogo : EntityBase

@@ -72,6 +72,7 @@ namespace XGame.Domain.Services
 
             AddNotifications(jogador);
 
+            //Se está inválido o serviço do notification, vai sair e apresentar a mensagem
             if (IsInvalid())
             {
                 return null;
@@ -99,6 +100,7 @@ namespace XGame.Domain.Services
                 return null;
             }
 
+            //Passando através de lambda
             jogador = _repositoryJogador.ObterPor(x => x.Email.Endereco == jogador.Email.Endereco && x.Senha == jogador.Senha);
 
             return (AutenticarJogadorResponse)jogador;

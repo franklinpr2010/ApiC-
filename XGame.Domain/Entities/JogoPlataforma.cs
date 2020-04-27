@@ -2,6 +2,9 @@
 
 namespace XGame.Domain.Entities
 {
+    /**
+     * Obter os jogos de cada jogador
+    **/
     public class JogoPlataforma
     {
         public Guid Id { get; set; }
