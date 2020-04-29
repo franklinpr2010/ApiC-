@@ -3,6 +3,7 @@ using XGame.Domain.Entities;
 
 namespace XGame.Infra.Persistence.Map
 {
+    //Mapeamento de plataforma
     public class MapPlataforma : EntityTypeConfiguration<Plataforma>
     {
         public MapPlataforma()

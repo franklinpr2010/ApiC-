@@ -3,6 +3,8 @@ using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
 using XGame.Domain.Entities;
 
+
+//vai mapear o jogador no banco de dados
 namespace XGame.Infra.Persistence.Map
 {
     public class MapJogador : EntityTypeConfiguration<Jogador>

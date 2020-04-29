@@ -14,6 +14,7 @@ namespace XGame.IoC.Unity
 {
     public static class DependencyResolver
     {
+        //Injeção de dependência
         public static void Resolve(UnityContainer container)
         {
 
@@ -24,15 +25,13 @@ namespace XGame.IoC.Unity
 
             //Serviço de Domain
             //container.RegisterType(typeof(IServiceBase<,>), typeof(ServiceBase<,>));
-
+            //Vai ter a interface e a classe concreta
             container.RegisterType<IServiceJogador, ServiceJogador>(new HierarchicalLifetimeManager());
             container.RegisterType<IServiceJogo, ServiceJogo>(new HierarchicalLifetimeManager());
             
-
-
             //Repository
             container.RegisterType(typeof(IRepositoryBase<,>), typeof(RepositoryBase<,>));
-
+            //Vai injetar  a interface e a classe concreta
             container.RegisterType<IRepositoryJogador, RepositoryJogador>(new HierarchicalLifetimeManager());
             container.RegisterType<IRepositoryJogo, RepositoryJogo>(new HierarchicalLifetimeManager());
             

@@ -6,12 +6,16 @@ namespace XGame.Infra.Persistence
 {
     public class XGameContext : DbContext
     {
+        //String de conexão com o banco de dados
         public XGameContext() : base("XGame")
         {
+            //disabilitar o proxy
             Configuration.ProxyCreationEnabled = false;
+            //objeto que depende do outro, cascateamento igual ao hibernate
             Configuration.LazyLoadingEnabled = false;
         }
 
+        //Dados que vão ser criados para acessar a tabela do mapeamento, que vai criar a tabela
         public IDbSet<Jogador> Jogadores { get; set; }
         public IDbSet<Plataforma> Plataformas { get; set; }
 
@@ -19,10 +23,12 @@ namespace XGame.Infra.Persistence
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Tabela que pertence a um esquema, tabelas de domínio, pode usar esquema para o banco
             //Seta o Schema default
             //modelBuilder.HasDefaultSchema("Apoio");
 
-            //Remove a pluralização dos nomes das tabelas
+            //Remove a pluralização dos nomes das tabelas - quando cria a sua aplicação, cria o mapeamento coloca no plural
+            //só que o plural é diferente do inglês
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             //Remove exclusão em cascata

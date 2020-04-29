@@ -10,6 +10,7 @@ namespace XGame.Domain.Arguments.Jogador
         public string UltimoNome { get; set; }
         public string Message { get; set; }
 
+        //converter para a entidade
         public static explicit operator AlterarJogadorResponse(Entities.Jogador entidade)
         {
             return new AlterarJogadorResponse() {

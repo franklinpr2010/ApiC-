@@ -11,25 +11,27 @@ using System.Web.Http;
 using XGame.Api.Security;
 using XGame.IoC.Unity;
 
+
 namespace XGame.Api
 {
     public class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public void Configuration(Owin.IAppBuilder app)
         {
-            HttpConfiguration config = new HttpConfiguration();
+
+            System.Web.Http.HttpConfiguration config = new System.Web.Http.HttpConfiguration();
 
             // Swagger
             SwaggerConfig.Register(config);
 
             // Configure Dependency Injection
-            var container = new UnityContainer();
+            var container = new Unity.UnityContainer();
             DependencyResolver.Resolve(container);
             config.DependencyResolver = new UnityResolver(container);
 
             ConfigureWebApi(config);
             ConfigureOAuth(app, container);
-
+            //permitir que qualquer URL consuma
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             app.UseWebApi(config);
@@ -38,7 +40,7 @@ namespace XGame.Api
 
         public static void ConfigureWebApi(HttpConfiguration config)
         {
-            // Remove o XML
+            // Remove o XML, usa JSON
             var formatters = config.Formatters;
             formatters.Remove(formatters.XmlFormatter);
 
@@ -63,6 +65,7 @@ namespace XGame.Api
 
             config.MapHttpAttributeRoutes();
 
+            //registrar a api no mapeamento, parte mais importante
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -72,6 +75,7 @@ namespace XGame.Api
 
         public void ConfigureOAuth(IAppBuilder app, UnityContainer container)
         {
+            //trabalhar com segurança da api
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,

@@ -12,8 +12,10 @@ using XGame.Domain.Interfaces.Services;
 
 namespace XGame.Api.Security
 {
+    //
     public class AuthorizationProvider : OAuthAuthorizationServerProvider
     {
+        //
         private readonly UnityContainer _container;
 
         public AuthorizationProvider(UnityContainer container)
@@ -23,6 +25,7 @@ namespace XGame.Api.Security
 
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            //requer segurança vai chamar essa validação
             context.Validated();
         }
 
@@ -30,17 +33,19 @@ namespace XGame.Api.Security
         {
             try
             {
+
                 IServiceJogador serviceJogador = _container.Resolve<IServiceJogador>();
 
-
+                //obtendo a autenticação, o email vai vir do contexto do oauth
                 AutenticarJogadorRequest request = new AutenticarJogadorRequest();
                 request.Email = context.UserName;
                 request.Senha = context.Password;
 
+                //Autenticando Jogador
                 AutenticarJogadorResponse response = serviceJogador.AutenticarJogador(request);
 
                 
-
+                //se jogador é inválido e não encontrou o jogador no banco então é inválido
                 if (serviceJogador.IsInvalid())
                 {
                     if (response == null)
@@ -58,6 +63,7 @@ namespace XGame.Api.Security
                     return;
                 }
 
+                //processo de escrever o token, nesse caso vai criar um clain jogador
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
                 //Definindo as Claims
@@ -67,6 +73,7 @@ namespace XGame.Api.Security
 
                 Thread.CurrentPrincipal = principal;
 
+                //vai jogar a identidade dentro do contexto validation
                 context.Validated(identity);
             }
             catch (Exception ex)
